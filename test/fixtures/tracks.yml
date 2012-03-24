@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  track_id: 1
+  track_mnet_id: 1
+  title: MyString
+  artist_mnet_id: 1
+  artist_name: MyString
+  genre: MyString
+  album_mnet_id: 1
+  album_image_small: MyString
+  album_image_medium: MyString
+  sample_resource: MyString
+  sample_location: MyString
+
+two:
+  track_id: 1
+  track_mnet_id: 1
+  title: MyString
+  artist_mnet_id: 1
+  artist_name: MyString
+  genre: MyString
+  album_mnet_id: 1
+  album_image_small: MyString
+  album_image_medium: MyString
+  sample_resource: MyString
+  sample_location: MyString

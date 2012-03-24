@@ -1,3 +1,72 @@
+I am attempting XML parsing using a gem called httparty
+
+
+//////////////
+
+MediaNet Notes
+
+IE key
+7I0ubAZUWSFg1z1OWpb6YWK9o
+
+SS key
+cNlIVDl5JWS
+
+///
+
+How to Retrieve Most Popular aka Top X content 
+If you call the Search APIs without including a keyword or search string, you will get back the Top N
+results by popularity ranking. Be sure to use the paging parameters wisely; i.e., only request the top 100 or 50, etc.
+
+///
+ 
+Searching with Wildcards 
+You can use the wildcards "*" and "?" for several of the input parameters for the various search APIs. For example, "sam*" will return all albums starting with "sam:" 
+
+  http://ieapi.mndigital.com/?method=Search.GetTracks&format=xml&title=sam*&album=&albumMnetId=
+  &artist=&artistMnetId=&keyword=&rights=purchase&includeExplicit=true&mainArtistOnly=
+  true&genre=&page=1&pageSize=10&blacklistIds=&apiKey=yourapikey   
+
+Important: Wildcard searches should not be used to build a local copy of artist, album, or track databases for performance and currency reasons. Data cached will become out of date with additions, deletions, and changes to the catalog. Additionally, for performance reasons only a maximum number of 250 results are returned from any of the search APIs. To have a copy of the database, Customers can instead subscribe to the XML Content Data Feed. Please see MN Open API Best Practices Checklist #20.
+
+///
+
+As an option for MN Open Plus Customers, MediaNet also delivers Samples via HTTP Progressive 
+Download. Part of the Mobile Support Plus Feature, this is primarily intended for Mobile Applications such as iPhone and other iOS devices that do not support Flash. A related option is a 64kbps AAC+ sample.
+
+///Getting started///
+
+Request via HTTP GET 
+  
+  http://api.mndigital.com?method=search.gettracks&title=Come%20As%20You%20Are&artist=Nirvana 
+  &rights=purchase&includeExplicit=true&page=1&pageSize=1&apiKey=YourAPIKEY&format=json 
+  
+  Note that the first line is the HTTP response status code and message, followed by the requested
+  data in the body of the HTTP response, here formatted per request above as the (non-default) JSON
+
+
+///
+I think I need to use Search.GetTracks instead of Artists, but I left Artists in just in case.
+///
+
+Search.GetArtists 
+  Description: Searches for artists by name and/or keyword.   
+  Returns: artist matches (with a count) and artist images if any 
+  Recommended HTTP Action: GET 
+  Signature or SSL Required? Neither
+
+
+Example: 
+  ?method=search.getartists&name=Pearl+Jam&page=1&pageSize=10&ApiKey=YourApiKey 
+
+Returns: 
+  ArtistSearchResults 
+  • Int TotalResult
+///
+Added includeKaraoke=true/false to Search.GetTracks and Search.GetAlbums (false by default
+
+
+//////////////
+
 These are notes from our twitter bootstrap meetup...
 
 ///popovers///
@@ -93,7 +162,14 @@ http://wrapbootstrap.com/
 http://www.lavishbootstrap.com/
 
 
+////
 
+McCaffery suggestion for XML model creation
+
+# artist = {}
+# xml_artist = data["Artists"][0]["Artist"][0]
+# artist["mnet_id"] = xml_artist["MnetId"][0]
+# artist["name"] = xml_artist["Name"][0]
 
 
 
