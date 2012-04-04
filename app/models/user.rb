@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   
-  has_many :tracks
+  has_many :tracks, :through => :user_tracks
   
   def self.create_with_omniauth(auth)
     create! do |user|

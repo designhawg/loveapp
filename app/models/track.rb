@@ -1,6 +1,6 @@
 class Track < ActiveRecord::Base
   
-  has_many :users
+  has_many :users, :through => :user_tracks
   
   def self.mnet_create
     create! do |track|
@@ -8,7 +8,6 @@ class Track < ActiveRecord::Base
       track = {}
       json_track[] = response["Tracks"][0]
       
-      track["track_id"] = #this needs to be created within DateTracks 
       track["track_mnet_id"] = json_track["MnetId"]
       track["title"] = json_track["Title"] 
       track["artist_mnet_id"] = json_track["Artist"]["MnetId"] 

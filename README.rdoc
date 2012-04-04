@@ -1,3 +1,28 @@
+<% @response.each do |track| %>
+  <tr>
+  <% if @response != nil %>
+    <td><%#= @response['Tracks']%></td>
+    <td><%#= track['title'] %></td>
+    <td><%#= track.artist_name %></td>
+    <td><%#= link_to 'Sample', track %></td>
+    <td><%#= link_to 'Add', track %></td>
+  <% end %>
+  </tr>
+<% end %>
+
+
+---
+#where does this loop go?
+#add_to_favorites
+  #if track_exists?(:MnetId)
+   #add_to_current_user_mixtape(:id)
+  #else
+   # create_track(:MnetId)
+  #end
+#end
+
+
+
 I am attempting XML parsing using a gem called httparty
 
 
@@ -10,6 +35,12 @@ IE key
 
 SS key
 cNlIVDl5JWS
+
+
+HTTParty.get("http://ieapi.mndigital.com/?method=Search.GetTracks&format=xml&title=sam*&album=&albumMnetId=
+&artist=&artistMnetId=&keyword=&rights=purchase&includeExplicit=true&mainArtistOnly=
+true&genre=&page=1&pageSize=10&blacklistIds=&apiKey=7I0ubAZUWSFg1z1OWpb6YWK9o")
+
 
 ///
 
@@ -24,7 +55,7 @@ You can use the wildcards "*" and "?" for several of the input parameters for th
 
   http://ieapi.mndigital.com/?method=Search.GetTracks&format=xml&title=sam*&album=&albumMnetId=
   &artist=&artistMnetId=&keyword=&rights=purchase&includeExplicit=true&mainArtistOnly=
-  true&genre=&page=1&pageSize=10&blacklistIds=&apiKey=yourapikey   
+  true&genre=&page=1&pageSize=10&blacklistIds=&apiKey=7I0ubAZUWSFg1z1OWpb6YWK9o   
 
 Important: Wildcard searches should not be used to build a local copy of artist, album, or track databases for performance and currency reasons. Data cached will become out of date with additions, deletions, and changes to the catalog. Additionally, for performance reasons only a maximum number of 250 results are returned from any of the search APIs. To have a copy of the database, Customers can instead subscribe to the XML Content Data Feed. Please see MN Open API Best Practices Checklist #20.
 
@@ -171,9 +202,50 @@ McCaffery suggestion for XML model creation
 # artist["mnet_id"] = xml_artist["MnetId"][0]
 # artist["name"] = xml_artist["Name"][0]
 
+////
 
+# this is from an old application.html.erb file
+# 
+# <!DOCTYPE html>
+# <html>
+# <head>
+#   <title>LoveIt.fm</title>
+#   <%= stylesheet_link_tag    "application", :media => "all" %>
+#   <%= javascript_include_tag "application" %>
+#   <%= csrf_meta_tags %>
+# </head>
+# <body>
+# <nav>
+# <% if current_user %>
+#   Welcome <%= current_user.name %>!
+#   <%= link_to "Sign Out", signout_path %>
+# <% else %>
+#   <%= link_to "Sign in with Twitter", "/auth/twitter" %> 
+# <% end %>
+# </nav>
+# <%= yield %>
+# 
+# </body>
+# </html>
 
+////
 
+# @cfg = 'xxxsupport'
+#           @user_key = '4787fsdbbfbfsdbhbfad5aba91129a3f1ed1b743321f7b'
+#           @api_key = 'MrUser411'
+#           @project = 'excelm-manoke'
+#           @url_new_string = 'https://api.squishlist.com/auth/?cfg='+@cfg+'&user_key='+@user_key+'&api_key='+@api_key
+#           # https://api.squishlist.com/auth/?cfg=xxxsupport&user_key=4787fsdbbfbfsdbhbfad5aba91129a3f1ed1b743321f7b&api_key=MrUser411  - this is what is created by @url_new_string
+#           response =  HTTParty.get(@url_new_string.to_str)  #submit the string to get the token
+#           @parsed_and_a_hash = JSON.parse(response)
+#           @token = @parsed_and_a_hash["token"]
+#make a new string with the token
+
+# @urlstring_to_post = 'https://api.squishlist.com/rest/?cfg='+@cfg+'&token='+@token+'&method=squish.issue.submit&prj='+@project
+# 
+#           #submit and get a result
+# 
+#           @result = HTTParty.post(@urlstring_to_post.to_str, :body => {:subject => 'This is the screen name', :issue_type => 'Application Problem', :status => 'Open', :priority => 'Normal', :description => 'This is the description for the problem'})
 
 
 

@@ -1,0 +1,41 @@
+<h1>Search for music</h1>
+<%= form_tag "/search", :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search %>
+    <%= submit_tag "Search" %>
+  </p>
+<% end %> 
+
+<br />
+
+<h1><Search results></h1>
+<table>
+  <tr>
+    <th></th>
+    <th>Title</th>
+    <th>Artist</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+    
+    
+    
+  <% data = @response["Tracks"] %>
+  <% data.each do |item| %>
+    <tr><%= item["Title"] %></tr><br>
+    <tr><%= item["Artist"]["Name"] %></tr><br>
+    <%= item["SampleLocations"][1]['Location'] %>   
+    <hr />    
+  <% end %>    
+    
+    <!-- #add_to_favorites
+          #if track_exists?(:MnetId)
+           #add_to_current_user_mixtape(:id)
+          #else
+           # create_track(:MnetId)
+          #end
+         -->
+        
+</table>
+

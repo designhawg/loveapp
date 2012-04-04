@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loveapp</title>
+    <title>DateTracks</title>
     <%= csrf_meta_tags %>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -30,11 +30,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Loveapp</a>
+          <a class="brand" href="#">
+            <img alt="DateTracks" src="/static/img/logo.png" style="height:30px">
           <div class="container-fluid nav-collapse">
             <ul class="nav">
-                <li><%= link_to "Link1", "/path1"  %></li>
-                <li><%= link_to "Link2", "/path2"  %></li>
+                <li><%= link_to "Video", "/path1"  %></li>
+                <li><%= link_to "Contact Us", "/path2"  %></li>
                 <li><%= link_to "Link3", "/path3"  %></li>
             </ul>
           </div><!--/.nav-collapse -->
@@ -44,6 +45,9 @@
 
     <div class="container-fluid">
       <div class="row-fluid">
+        <div class="span9">
+          <%= yield %>
+        </div>
         <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
@@ -54,9 +58,6 @@
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
-        <div class="span9">
-          <%= yield %>
-        </div>
       </div><!--/row-->
 
       <footer>
@@ -71,30 +72,6 @@
     <%= javascript_include_tag "application" %>
 
   </body>
-  
-  # this is from an old application.html.erb file
-  # 
-  # <!DOCTYPE html>
-  # <html>
-  # <head>
-  #   <title>LoveIt.fm</title>
-  #   <%= stylesheet_link_tag    "application", :media => "all" %>
-  #   <%= javascript_include_tag "application" %>
-  #   <%= csrf_meta_tags %>
-  # </head>
-  # <body>
-  # <nav>
-  # <% if current_user %>
-  #   Welcome <%= current_user.name %>!
-  #   <%= link_to "Sign Out", signout_path %>
-  # <% else %>
-  #   <%= link_to "Sign in with Twitter", "/auth/twitter" %> 
-  # <% end %>
-  # </nav>
-  # <%= yield %>
-  # 
-  # </body>
-  # </html>
   
   
 </html>
