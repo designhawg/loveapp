@@ -10,24 +10,19 @@
 
 <h1><Search results></h1>
 <table>
-  <tr>
-    <th></th>
-    <th>Title</th>
-    <th>Artist</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-    
-    
-    
-  <% data = @response["Tracks"] %>
-  <% data.each do |item| %>
-    <tr><%= item["Title"] %></tr><br>
-    <tr><%= item["Artist"]["Name"] %></tr><br>
-    <%= item["SampleLocations"][1]['Location'] %>   
-    <hr />    
+  <% if @response != nil %>
+    <% data = @response["Tracks"] %>
+      <% data.each do |item| %>
+      <tr><%= item["Title"] %></tr><br>
+      <tr><%= item["Artist"]["Name"] %></tr><br>
+      <tr><%= item["SampleLocations"][0]["Location"] %></tr><br>  
+      <td><%= link_to 'Sample', item %></td>
+      <td><%= link_to 'Add', item %></td>  
+      <hr />    
+    <% end %>    
   <% end %>    
+</table>
+
     
     <!-- #add_to_favorites
           #if track_exists?(:MnetId)
@@ -37,5 +32,4 @@
           #end
          -->
         
-</table>
 
